@@ -58,36 +58,102 @@ systemColors() {
   );
 }
 
-Widget kSubmitButton(
-  BuildContext context, {
-  void Function()? onTap,
-  required String label,
-  Color? buttonColor,
-  Color? textColor,
-}) {
-  return GestureDetector(
-    onTap: onTap,
-    child: Container(
-      padding: const EdgeInsets.all(13),
-      decoration: BoxDecoration(
-        color: buttonColor ?? kPrimaryColor,
-        borderRadius: BorderRadius.circular(7),
+class SubmitButton {
+  static Widget text(
+    BuildContext context, {
+    required void Function()? onPressed,
+    String? label,
+    Color? buttonColor,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return MaterialButton(
+      onPressed: onPressed,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
       ),
+      highlightElevation: 0,
+      color: buttonColor ?? kPrimaryColor,
+      elevation: 0,
+      padding: padding ?? EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       child: SizedBox(
         width: double.infinity,
         child: Text(
-          label,
+          label ?? 'Proceed',
           style: TextStyle(
-            color: textColor ?? Colors.white,
-            fontWeight: FontWeight.w500,
+            color: Colors.white,
             fontSize: sdp(context, 12),
           ),
           textAlign: TextAlign.center,
         ),
       ),
-    ),
-  );
+    );
+  }
+
+  static Widget icon(
+    BuildContext context, {
+    required void Function()? onPressed,
+    String? label,
+    Icon? icon,
+    Color? buttonColor,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return MaterialButton(
+      onPressed: onPressed,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      highlightElevation: 0,
+      color: buttonColor ?? kPrimaryColor,
+      elevation: 0,
+      padding: padding ?? EdgeInsets.symmetric(vertical: 15, horizontal: 25),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            label ?? 'Proceed',
+            style: TextStyle(color: Colors.white, fontSize: sdp(context, 12)),
+          ),
+          icon ??
+              Icon(
+                Icons.arrow_forward,
+                color: Colors.white,
+              ),
+        ],
+      ),
+    );
+  }
 }
+
+// Widget kSubmitButton(
+//   BuildContext context, {
+//   void Function()? onTap,
+//   required String label,
+//   Color? buttonColor,
+//   Color? textColor,
+// }) {
+//   return GestureDetector(
+//     onTap: onTap,
+//     child: Container(
+//       padding: const EdgeInsets.all(13),
+//       decoration: BoxDecoration(
+//         color: buttonColor ?? kPrimaryColor,
+//         borderRadius: BorderRadius.circular(7),
+//       ),
+//       child: SizedBox(
+//         width: double.infinity,
+//         child: Text(
+//           label,
+//           style: TextStyle(
+//             color: textColor ?? Colors.white,
+//             fontWeight: FontWeight.w500,
+//             fontSize: sdp(context, 12),
+//           ),
+//           textAlign: TextAlign.center,
+//         ),
+//       ),
+//     ),
+//   );
+// }
 
 TextField kTextField(
   BuildContext context, {
@@ -183,12 +249,26 @@ void kShowSnackBar(
   );
 }
 
-// kAppbarTitle(BuildContext context, {required String title}) {
-//   return Text(
-//     title,
-//     style: TextStyle(
-//       fontWeight: FontWeight.w600,
-//       fontSize: sdp(context, 13),
-//     ),
-//   );
-// }
+Widget kPill(
+  BuildContext context, {
+  EdgeInsetsGeometry? padding,
+  Color? color,
+  String? label,
+  BorderRadiusGeometry? borderRadius,
+}) {
+  return Container(
+    padding: padding ?? EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+    decoration: BoxDecoration(
+      color: color ?? Color(0xffe9f0fe),
+      borderRadius: borderRadius ?? BorderRadius.circular(5),
+    ),
+    child: Text(
+      label ?? '<label>',
+      style: TextStyle(
+        fontWeight: FontWeight.w600,
+        color: Color(0xff5a74b6),
+        fontSize: sdp(context, 8),
+      ),
+    ),
+  );
+}

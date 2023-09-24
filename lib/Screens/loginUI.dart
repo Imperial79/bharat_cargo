@@ -1,4 +1,5 @@
 import 'package:bharat_cargo/Screens/registerUI.dart';
+import 'package:bharat_cargo/Screens/rootUI.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
@@ -66,7 +67,13 @@ class _LoginUIState extends State<LoginUI> {
                     keyboardType: TextInputType.phone,
                   ),
                   height20,
-                  kSubmitButton(context, label: 'Proceed'),
+                  SubmitButton.text(
+                    context,
+                    onPressed: () {
+                      navPush(context, RootUI());
+                    },
+                    label: 'Proceed',
+                  ),
                   height50,
                   Center(
                     child: Row(

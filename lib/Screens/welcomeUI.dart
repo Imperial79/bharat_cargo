@@ -39,32 +39,13 @@ class _WelcomeUIState extends State<WelcomeUI> {
                 ),
               ),
               height15,
-              MaterialButton(
+              SubmitButton.icon(
+                context,
                 onPressed: () {
                   navPush(context, LoginUI());
                 },
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                highlightElevation: 0,
-                color: kPrimaryColor,
-                elevation: 0,
-                padding: EdgeInsets.symmetric(vertical: 15, horizontal: 25),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(
-                      'Get Started',
-                      style: TextStyle(
-                          color: Colors.white, fontSize: sdp(context, 12)),
-                    ),
-                    Icon(
-                      Icons.arrow_forward,
-                      color: Colors.white,
-                    ),
-                  ],
-                ),
-              ),
+                label: 'Get Started',
+              )
             ],
           ),
         ),
