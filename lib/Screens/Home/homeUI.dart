@@ -48,7 +48,7 @@ class _HomeUIState extends State<HomeUI> {
       body: DefaultTabController(
         length: 2,
         child: Container(
-          padding: EdgeInsets.all(15),
+          padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
           decoration: BoxDecoration(
             color: Color(0xfff6f6f6),
             borderRadius: BorderRadius.circular(15),
@@ -111,7 +111,7 @@ class _HomeUIState extends State<HomeUI> {
                   ],
                 ),
               ),
-              height20,
+              height15,
               Expanded(
                 child: TabBarView(
                   children: [
@@ -149,6 +149,7 @@ class _HomeUIState extends State<HomeUI> {
 
   Widget _cargoCard() {
     return Container(
+      margin: EdgeInsets.only(bottom: 15),
       padding: EdgeInsets.all(15),
       decoration: BoxDecoration(
         color: Colors.white,

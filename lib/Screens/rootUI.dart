@@ -1,4 +1,5 @@
-import 'package:bharat_cargo/Screens/homeUI.dart';
+import 'package:bharat_cargo/Screens/Home/homeUI.dart';
+import 'package:bharat_cargo/Screens/Home/newCargoUI.dart';
 import 'package:bharat_cargo/utils/animated-indexed-stack.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
@@ -18,7 +19,7 @@ class _RootUIState extends State<RootUI> {
   int _activeTab = 0;
   List<Widget> _screens = [
     HomeUI(),
-    HomeUI(),
+    NewCargoUI(),
     HomeUI(),
     HomeUI(),
   ];
