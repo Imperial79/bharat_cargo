@@ -1,8 +1,7 @@
 import 'package:bharat_cargo/utils/colors.dart';
+import 'package:bharat_cargo/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
-
 import 'sdp.dart';
 
 SizedBox get height5 => const SizedBox(height: 5);
@@ -36,8 +35,8 @@ Widget kBackButton(BuildContext context) {
     onPressed: () {
       Navigator.pop(context);
     },
-    icon: SvgPicture.asset(
-      'lib/assets/icons/back.svg',
+    icon: kSvgImage(
+      'back',
       height: sdp(context, 16),
     ),
   );

@@ -1,9 +1,8 @@
-import 'package:bharat_cargo/Screens/loginUI.dart';
-import 'package:bharat_cargo/utils/colors.dart';
+import 'package:bharat_cargo/Screens/Auth%20Screens/loginUI.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import '../../utils/constants.dart';
 
 class WelcomeUI extends StatefulWidget {
   const WelcomeUI({super.key});
@@ -21,7 +20,7 @@ class _WelcomeUIState extends State<WelcomeUI> {
           padding: const EdgeInsets.all(15),
           child: Column(
             children: [
-              Expanded(child: SvgPicture.asset('assets/images/delivery.svg')),
+              Expanded(child: kSvgImage('delivery')),
               height20,
               Text(
                 'Urgent Delivery?',

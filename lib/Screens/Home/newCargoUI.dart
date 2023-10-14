@@ -1,7 +1,7 @@
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import '../../utils/constants.dart';
 import '../../utils/sdp.dart';
 
 class NewCargoUI extends StatefulWidget {
@@ -51,8 +51,8 @@ class _NewCargoUIState extends State<NewCargoUI> {
               children: [
                 Column(
                   children: [
-                    SvgPicture.asset(
-                      'assets/icons/from_location.svg',
+                    kSvgImage(
+                      'from_location',
                       colorFilter: kSvgColor(Colors.grey),
                     ),
                     height10,

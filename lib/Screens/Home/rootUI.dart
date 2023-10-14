@@ -6,7 +6,8 @@ import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../utils/sdp.dart';
+import '../../utils/sdp.dart';
+import 'historyUI.dart';
 
 class RootUI extends StatefulWidget {
   const RootUI({super.key});
@@ -20,8 +21,8 @@ class _RootUIState extends State<RootUI> {
   List<Widget> _screens = [
     HomeUI(),
     NewCargoUI(),
-    HomeUI(),
-    HomeUI(),
+    HistoryUI(),
+    HistoryUI(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,11 @@ class _RootUIState extends State<RootUI> {
             ),
             _navIcons(
               index: 2,
+              iconPath: 'assets/icons/history.svg',
+              label: 'Recents',
+            ),
+            _navIcons(
+              index: 3,
               iconPath: 'assets/icons/profile.svg',
               label: 'Profile',
             ),
@@ -82,6 +88,7 @@ class _RootUIState extends State<RootUI> {
           children: [
             SvgPicture.asset(
               _isSelect ? iconPath.replaceAll(".svg", "-filled.svg") : iconPath,
+              height: sdp(context, 17),
               colorFilter: kSvgColor(
                 _activeTab == index ? kPrimaryColor : Color(0xffb8b8b8),
               ),

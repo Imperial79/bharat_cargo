@@ -1,11 +1,10 @@
-import 'package:bharat_cargo/Screens/loginUI.dart';
-import 'package:bharat_cargo/Screens/rootUI.dart';
+import 'package:bharat_cargo/Screens/Auth%20Screens/loginUI.dart';
+import 'package:bharat_cargo/Screens/Home/rootUI.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-
-import '../utils/colors.dart';
-import '../utils/components.dart';
-import '../utils/sdp.dart';
+import '../../utils/colors.dart';
+import '../../utils/components.dart';
+import '../../utils/constants.dart';
+import '../../utils/sdp.dart';
 
 class RegisterUI extends StatefulWidget {
   const RegisterUI({super.key});
@@ -43,8 +42,8 @@ class _RegisterUIState extends State<RegisterUI> {
                   height20,
                   Expanded(
                     child: Center(
-                      child: SvgPicture.asset(
-                        'assets/images/register.svg',
+                      child: kSvgImage(
+                        'register',
                         height: sdp(context, 200),
                       ),
                     ),

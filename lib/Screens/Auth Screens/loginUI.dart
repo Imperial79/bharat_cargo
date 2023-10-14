@@ -1,10 +1,10 @@
-import 'package:bharat_cargo/Screens/registerUI.dart';
-import 'package:bharat_cargo/Screens/rootUI.dart';
+import 'package:bharat_cargo/Screens/Auth%20Screens/registerUI.dart';
+import 'package:bharat_cargo/Screens/Home/rootUI.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
-import '../utils/components.dart';
+import '../../utils/components.dart';
+import '../../utils/constants.dart';
 
 class LoginUI extends StatefulWidget {
   const LoginUI({super.key});
@@ -42,8 +42,8 @@ class _LoginUIState extends State<LoginUI> {
                   height20,
                   Expanded(
                     child: Center(
-                      child: SvgPicture.asset(
-                        'assets/images/login.svg',
+                      child: kSvgImage(
+                        'login',
                         height: sdp(context, 200),
                       ),
                     ),
