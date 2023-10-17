@@ -30,18 +30,6 @@ Future<void> navPopUntilPush(BuildContext context, Widget screen) {
   return navPush(context, screen);
 }
 
-Widget kBackButton(BuildContext context) {
-  return IconButton(
-    onPressed: () {
-      Navigator.pop(context);
-    },
-    icon: kSvgImage(
-      'back',
-      height: sdp(context, 16),
-    ),
-  );
-}
-
 systemColors() {
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
       overlays: [SystemUiOverlay.top]);
@@ -122,37 +110,6 @@ class SubmitButton {
     );
   }
 }
-
-// Widget kSubmitButton(
-//   BuildContext context, {
-//   void Function()? onTap,
-//   required String label,
-//   Color? buttonColor,
-//   Color? textColor,
-// }) {
-//   return GestureDetector(
-//     onTap: onTap,
-//     child: Container(
-//       padding: const EdgeInsets.all(13),
-//       decoration: BoxDecoration(
-//         color: buttonColor ?? kPrimaryColor,
-//         borderRadius: BorderRadius.circular(7),
-//       ),
-//       child: SizedBox(
-//         width: double.infinity,
-//         child: Text(
-//           label,
-//           style: TextStyle(
-//             color: textColor ?? Colors.white,
-//             fontWeight: FontWeight.w500,
-//             fontSize: sdp(context, 12),
-//           ),
-//           textAlign: TextAlign.center,
-//         ),
-//       ),
-//     ),
-//   );
-// }
 
 TextField kTextField(
   BuildContext context, {

@@ -53,11 +53,12 @@ class _NewCargoUIState extends State<NewCargoUI> {
                   children: [
                     kSvgImage(
                       'from_location',
-                      colorFilter: kSvgColor(Colors.grey),
+                      color: Colors.grey,
                     ),
                     height10,
                     Container(
-                      height: sdp(context, 100),
+                      // as there are 5 fields
+                      height: 5 * sdp(context, 50),
                       width: 2.5,
                       color: kPrimaryColor,
                     ),

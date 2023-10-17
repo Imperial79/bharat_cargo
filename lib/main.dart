@@ -19,12 +19,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.ease,
       themeMode: ThemeMode.system,
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
-        useMaterial3: true,
-        fontFamily: 'Poppins',
-      ),
+      theme: kThemeData(),
       home: const RootUI(),
     );
   }

@@ -29,18 +29,14 @@ class _HistoryUIState extends State<HistoryUI> {
             onPressed: () {},
             icon: kSvgImage(
               'search',
-              colorFilter: kSvgColor(
-                Color(0xffbcbcbc),
-              ),
+              color: Color(0xffbcbcbc),
             ),
           ),
           IconButton(
             onPressed: () {},
             icon: kSvgImage(
               'filter',
-              colorFilter: kSvgColor(
-                Color(0xffbcbcbc),
-              ),
+              color: Color(0xffbcbcbc),
             ),
           ),
         ],
@@ -200,7 +196,7 @@ class _HistoryUIState extends State<HistoryUI> {
             children: [
               kSvgImage(
                 'from_location',
-                colorFilter: kSvgColor(Colors.grey),
+                color: Colors.grey,
               ),
               width15,
               Expanded(
@@ -233,7 +229,7 @@ class _HistoryUIState extends State<HistoryUI> {
             children: [
               kSvgImage(
                 'to_location',
-                colorFilter: kSvgColor(kPrimaryColor),
+                color: kPrimaryColor,
               ),
               width15,
               Expanded(
