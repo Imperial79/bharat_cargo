@@ -1,5 +1,4 @@
 import 'package:bharat_cargo/utils/colors.dart';
-import 'package:bharat_cargo/utils/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'sdp.dart';

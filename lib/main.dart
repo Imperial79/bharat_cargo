@@ -1,5 +1,4 @@
 import 'package:bharat_cargo/Screens/Home/rootUI.dart';
-import 'package:bharat_cargo/Screens/Auth%20Screens/welcomeUI.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'utils/colors.dart';
