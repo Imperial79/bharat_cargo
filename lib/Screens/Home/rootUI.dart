@@ -1,13 +1,16 @@
 import 'package:bharat_cargo/Screens/Home/homeUI.dart';
 import 'package:bharat_cargo/Screens/Home/newCargoUI.dart';
+import 'package:bharat_cargo/Screens/Profile%20Screens/profileUI.dart';
+import 'package:bharat_cargo/constants/globals.dart';
 import 'package:bharat_cargo/utils/animated-indexed-stack.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
 import '../../utils/sdp.dart';
 import 'historyUI.dart';
+
+ValueNotifier activeTab = new ValueNotifier(0);
 
 class RootUI extends StatefulWidget {
   const RootUI({super.key});
@@ -17,18 +20,40 @@ class RootUI extends StatefulWidget {
 }
 
 class _RootUIState extends State<RootUI> {
-  int _activeTab = 0;
   List<Widget> _screens = [
     HomeUI(),
     NewCargoUI(),
     HistoryUI(),
-    HistoryUI(),
+    ProfileUI(),
   ];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: AnimatedIndexedStack(index: _activeTab, children: _screens),
-      bottomNavigationBar: _bottomBar(),
+    return ValueListenableBuilder(
+      valueListenable: activeTab,
+      builder: (context, val, child) {
+        return Scaffold(
+          body: AnimatedIndexedStack(
+            index: activeTab.value,
+            children: _screens,
+          ),
+          bottomNavigationBar: ValueListenableBuilder(
+            valueListenable: showAppbar,
+            builder: (context, isShow, child) {
+              return SafeArea(
+                child: AnimatedContainer(
+                  height: isShow ? sdp(context, 50) : 0,
+                  duration: Duration(milliseconds: 200),
+                  child: Wrap(
+                    children: [
+                      _bottomBar(),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        );
+      },
     );
   }
 
@@ -75,12 +100,12 @@ class _RootUIState extends State<RootUI> {
     required String label,
     required int index,
   }) {
-    bool _isSelect = _activeTab == index;
+    bool _isSelect = activeTab.value == index;
     return Expanded(
       child: IconButton(
         onPressed: () {
           setState(() {
-            _activeTab = index;
+            activeTab.value = index;
           });
         },
         icon: Column(
@@ -90,16 +115,16 @@ class _RootUIState extends State<RootUI> {
               _isSelect ? iconPath.replaceAll(".svg", "-filled.svg") : iconPath,
               height: sdp(context, 17),
               colorFilter: kSvgColor(
-                _activeTab == index ? kPrimaryColor : Color(0xffb8b8b8),
+                _isSelect ? kPrimaryColor : kInactiveColor,
               ),
             ),
             height5,
             Text(
               label,
               style: TextStyle(
-                color: _activeTab == index ? kPrimaryColor : Color(0xffb8b8b8),
+                color: _isSelect ? kPrimaryColor : kInactiveColor,
                 fontSize: sdp(context, 9),
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.w500,
               ),
             ),
           ],

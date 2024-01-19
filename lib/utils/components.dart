@@ -14,6 +14,10 @@ SizedBox get width10 => const SizedBox(width: 10);
 SizedBox get width15 => const SizedBox(width: 15);
 SizedBox get width20 => const SizedBox(width: 20);
 
+SizedBox kHeight(double height) => SizedBox(
+      height: height,
+    );
+
 Future<void> navPush(BuildContext context, Widget screen) {
   return Navigator.push(
       context, MaterialPageRoute(builder: (context) => screen));
@@ -130,31 +134,33 @@ TextField kTextField(
     keyboardType: keyboardType,
     style: TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: sdp(context, 12),
+      fontSize: sdp(context, 10),
       fontFamily: 'Poppins',
     ),
     maxLength: maxLength,
     maxLines: maxLines,
     minLines: minLines,
     decoration: InputDecoration(
+      // isDense: true,
       counterText: '',
       prefixText: prefixText,
       prefixStyle: TextStyle(
-        fontSize: sdp(context, 12),
+        fontSize: sdp(context, 10),
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
       ),
       labelText: labelText,
       labelStyle: TextStyle(
         fontFamily: 'Poppins',
-        fontWeight: FontWeight.w500,
-        color: Colors.grey,
+        fontWeight: FontWeight.w400,
+        color: Colors.grey.shade700,
+        fontSize: sdp(context, 10),
       ),
       floatingLabelStyle: TextStyle(
         fontFamily: 'Poppins',
-        fontSize: sdp(context, 14),
+        fontSize: sdp(context, 10),
         fontWeight: FontWeight.w500,
-        color: Colors.grey,
+        color: Colors.grey.shade700,
       ),
       enabledBorder: UnderlineInputBorder(
         borderSide: BorderSide(
@@ -208,7 +214,7 @@ Widget kPill(
   BuildContext context, {
   EdgeInsetsGeometry? padding,
   Color? color,
-  String? label,
+  required String? label,
   BorderRadiusGeometry? borderRadius,
 }) {
   return Container(
@@ -216,13 +222,77 @@ Widget kPill(
     decoration: BoxDecoration(
       color: color ?? Color(0xffe9f0fe),
       borderRadius: borderRadius ?? BorderRadius.circular(5),
+      border: Border.all(
+        color: kCompleteColor,
+        width: .5,
+      ),
     ),
     child: Text(
-      label ?? '<label>',
+      label!.toUpperCase(),
       style: TextStyle(
         fontWeight: FontWeight.w600,
-        color: Color(0xff5a74b6),
+        color: kCompleteColor,
         fontSize: sdp(context, 8),
+        letterSpacing: 1,
+      ),
+    ),
+  );
+}
+
+Widget kTabbar(
+  BuildContext context, {
+  required List<Widget> tabs,
+  required List<Widget> views,
+}) {
+  return DefaultTabController(
+    length: 2,
+    child: Container(
+      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
+      decoration: BoxDecoration(
+        color: Color(0xfff6f6f6),
+        borderRadius: BorderRadius.circular(15),
+      ),
+      child: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.all(2),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: TabBar(
+              indicatorColor: Colors.white,
+              dividerColor: Colors.white.withOpacity(0),
+              indicatorSize: TabBarIndicatorSize.tab,
+              unselectedLabelColor: Colors.black,
+              labelColor: Colors.white,
+              indicator: BoxDecoration(
+                color: kPrimaryColor,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              tabs: tabs,
+            ),
+          ),
+          height10,
+          Expanded(
+            child: TabBarView(children: views),
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
+Widget kTextButton(
+    {required void Function()? onPressed, required String label}) {
+  return InkWell(
+    onTap: onPressed,
+    child: Text(
+      label,
+      style: TextStyle(
+        color: kPrimaryColor,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1,
       ),
     ),
   );

@@ -1,10 +1,13 @@
+import 'package:bharat_cargo/Screens/Home/rootUI.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:bharat_cargo/utils/constants.dart';
-import 'package:bharat_cargo/utils/customSliverAppbar.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+
+import '../../constants/globals.dart';
 
 class HomeUI extends StatefulWidget {
   const HomeUI({super.key});
@@ -15,105 +18,138 @@ class HomeUI extends StatefulWidget {
 
 class _HomeUIState extends State<HomeUI> {
   int _selectedCarouselImage = 0;
+
+  final _scrollController = new ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  _scrollListener() {
+    if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.forward ||
+        _scrollController.position.atEdge) {
+      showAppbar.value = true;
+    } else {
+      showAppbar.value = false;
+    }
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      showAppbar.value = true;
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(() {});
+    _scrollController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: CustomScrollView(
-        slivers: [
-          CustomSliverAppBar(
-            isMainView: true,
-            title: Text(
-              'Bharat Cargo',
-              style: TextStyle(
-                color: kPrimaryColor,
-                fontSize: sdp(context, 13),
-                fontWeight: FontWeight.w600,
+      appBar: AppBar(
+        title: Text(
+          'Bharat Cargo',
+          style: TextStyle(
+            fontSize: sdp(context, 15),
+            fontWeight: FontWeight.w600,
+          ),
+        ),
+      ),
+      body: SingleChildScrollView(
+        controller: _scrollController,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            _quickBtns(),
+            height10,
+            _carousel(),
+            height10,
+            _carouselIndicator(),
+            height20,
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: 12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  height20,
+                  Text(
+                    'Recents',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  height20,
+                  ListView.builder(
+                    itemCount: 4,
+                    shrinkWrap: true,
+                    padding: EdgeInsets.zero,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemBuilder: (context, index) {
+                      return _recentsTile();
+                    },
+                  ),
+                ],
               ),
             ),
-            actions: [
-              IconButton(
-                onPressed: () {},
-                icon: kSvgImage(
-                  'notification',
-                  height: sdp(context, 20),
-                ),
-              ),
-              width10,
-              CircleAvatar(
-                radius: 16,
-              ),
-              width10,
-            ],
+            kHeight(
+              sdp(context, 50),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _quickBtns() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 10),
+      child: Row(
+        children: [
+          _homeMenu(
+            onTap: () {},
+            imgName: 'book-cargo',
+            label: 'Book Cargo',
           ),
-          SliverList.list(
-            children: [
-              height10,
-              CarouselSlider(
-                items: List.generate(
-                  2,
-                  (index) => _carouselCard(index),
-                ),
-                options: CarouselOptions(
-                  autoPlay: true,
-                  aspectRatio: 16 / 7,
-                  enlargeCenterPage: true,
-                  viewportFraction: 0.8,
-                  onPageChanged: (index, reason) {
-                    setState(() => _selectedCarouselImage = index);
-                  },
-                ),
-              ),
-              height10,
-              _carouselIndicator(),
-              height20,
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 12.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Row(
-                      children: [
-                        _homeMenu(
-                          onTap: () {},
-                          imgName: 'book-cargo',
-                          label: 'Book Cargo',
-                        ),
-                        _homeMenu(
-                          onTap: () {},
-                          imgName: 'book-cargo',
-                          label: 'History',
-                        ),
-                        _homeMenu(
-                          onTap: () {},
-                          imgName: 'rewards',
-                          label: 'Rewards',
-                        ),
-                      ],
-                    ),
-                    height20,
-                    Text(
-                      'Recents',
-                      style: TextStyle(
-                        fontWeight: FontWeight.w400,
-                        letterSpacing: 1,
-                      ),
-                    ),
-                    height20,
-                    ListView.builder(
-                      itemCount: 4,
-                      shrinkWrap: true,
-                      padding: EdgeInsets.zero,
-                      physics: NeverScrollableScrollPhysics(),
-                      itemBuilder: (context, index) {
-                        return _recentsTile();
-                      },
-                    ),
-                  ],
-                ),
-              ),
-            ],
+          _homeMenu(
+            onTap: () {
+              setState(() {
+                activeTab.value = 2;
+              });
+            },
+            imgName: 'book-cargo',
+            label: 'History',
+          ),
+          _homeMenu(
+            onTap: () {},
+            imgName: 'rewards',
+            label: 'Rewards',
           ),
         ],
+      ),
+    );
+  }
+
+  CarouselSlider _carousel() {
+    return CarouselSlider(
+      items: List.generate(
+        2,
+        (index) => _carouselCard(index),
+      ),
+      options: CarouselOptions(
+        autoPlay: true,
+        aspectRatio: 16 / 7,
+        enlargeCenterPage: true,
+        viewportFraction: 0.8,
+        onPageChanged: (index, reason) {
+          setState(() => _selectedCarouselImage = index);
+        },
       ),
     );
   }

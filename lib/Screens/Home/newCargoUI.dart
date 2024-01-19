@@ -29,6 +29,7 @@ class _NewCargoUIState extends State<NewCargoUI> {
       body: SingleChildScrollView(
         padding: EdgeInsets.all(15),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
               children: [
@@ -47,90 +48,139 @@ class _NewCargoUIState extends State<NewCargoUI> {
             ),
             height20,
             Row(
+              children: [
+                kSvgImage(
+                  'from_location',
+                  color: Colors.black,
+                  height: sdp(context, 11),
+                ),
+                width10,
+                Text(
+                  'From',
+                  style: TextStyle(
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+            ),
+            height5,
+            Container(
+              width: 80,
+              height: 5,
+              color: kPrimaryColor,
+            ),
+            height20,
+            Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   children: [
-                    kSvgImage(
-                      'from_location',
-                      color: Colors.grey,
-                    ),
-                    height10,
-                    Container(
-                      // as there are 5 fields
-                      height: 5 * sdp(context, 50),
-                      width: 2.5,
-                      color: kPrimaryColor,
-                    ),
+                    // Row(
+                    //   children: [
+                    //     kSvgImage(
+                    //       'from_location',
+                    //       color: Colors.grey,
+                    //       height: sdp(context, 11),
+                    //     ),
+                    //     width10,
+                    //     Text(
+                    //       'From',
+                    //       style: TextStyle(
+                    //         fontWeight: FontWeight.w600,
+                    //       ),
+                    //     ),
+                    //   ],
+                    // ),
+                    // height5,
+                    // Container(
+                    //   // as there are 5 fields
+                    //   height: 5.2 * sdp(context, 50),
+                    //   width: 5,
+                    //   color: kPrimaryColor,
+                    // ),
                   ],
                 ),
-                width10,
+                // width10,
                 Expanded(
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'From',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
+                  child: Container(
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      borderRadius: kRadius(10),
+                      color: Colors.grey.shade100,
+                      border: Border.all(color: Colors.grey.shade300),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        // Text(
+                        //   'From',
+                        //   style: TextStyle(
+                        //     fontWeight: FontWeight.w600,
+                        //   ),
+                        // ),
+                        kTextField(
+                          context,
+                          labelText: 'Full Name',
+                          textCapitalization: TextCapitalization.words,
                         ),
-                      ),
-                      // height20,
-                      kTextField(
-                        context,
-                        labelText: 'Full Name',
-                      ),
-                      kTextField(
-                        context,
-                        labelText: 'Phone',
-                      ),
-                      kTextField(
-                        context,
-                        labelText: 'Delivery Comments (Optional)',
-                      ),
-                      kTextField(
-                        context,
-                        labelText: 'City, Street, house',
-                      ),
-                      Row(
-                        children: [
-                          Flexible(
-                            child: kTextField(
-                              context,
-                              labelText: 'Floor',
-                            ),
-                          ),
-                          width10,
-                          Flexible(
-                            child: kTextField(
-                              context,
-                              labelText: 'House No.',
-                            ),
-                          ),
-                        ],
-                      ),
-                      height10,
-                      Container(
-                        width: double.infinity,
-                        padding: EdgeInsets.all(15),
-                        decoration: BoxDecoration(
-                          color: Colors.grey.shade100,
-                          borderRadius: BorderRadius.circular(15),
+                        kTextField(
+                          context,
+                          labelText: 'Phone',
+                          keyboardType: TextInputType.phone,
                         ),
-                        child: Row(
+                        kTextField(
+                          context,
+                          labelText: 'Delivery Comments (Optional)',
+                          minLines: 3,
+                          maxLines: 3,
+                        ),
+                        kTextField(
+                          context,
+                          labelText: 'City, Street, house',
+                          minLines: 3,
+                          maxLines: 3,
+                        ),
+                        Row(
                           children: [
-                            Icon(Icons.map),
-                            width10,
-                            Text(
-                              'Add address',
-                              style: TextStyle(fontWeight: FontWeight.w600),
+                            Flexible(
+                              child: kTextField(
+                                context,
+                                labelText: 'Floor',
+                                keyboardType: TextInputType.number,
+                              ),
                             ),
-                            Spacer(),
-                            Icon(Icons.arrow_right_alt),
+                            width10,
+                            Flexible(
+                              child: kTextField(
+                                context,
+                                labelText: 'House No.',
+                              ),
+                            ),
                           ],
                         ),
-                      ),
-                    ],
+                        height10,
+                        Container(
+                          width: double.infinity,
+                          padding: EdgeInsets.all(15),
+                          decoration: BoxDecoration(
+                            color: Colors.grey.shade100,
+                            borderRadius: BorderRadius.circular(15),
+                          ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.map),
+                              width10,
+                              Text(
+                                'Add address',
+                                style: TextStyle(fontWeight: FontWeight.w600),
+                              ),
+                              Spacer(),
+                              Icon(Icons.arrow_right_alt),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],

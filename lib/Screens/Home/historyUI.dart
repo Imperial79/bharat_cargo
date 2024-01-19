@@ -1,7 +1,9 @@
+import 'package:bharat_cargo/constants/globals.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import '../../utils/constants.dart';
 
 class HistoryUI extends StatefulWidget {
@@ -12,6 +14,36 @@ class HistoryUI extends StatefulWidget {
 }
 
 class _HistoryUIState extends State<HistoryUI> {
+  final _scrollController = new ScrollController();
+
+  @override
+  void initState() {
+    super.initState();
+    _scrollController.addListener(_scrollListener);
+  }
+
+  _scrollListener() {
+    if (_scrollController.position.userScrollDirection ==
+            ScrollDirection.forward ||
+        _scrollController.position.atEdge) {
+      showAppbar.value = true;
+    } else {
+      showAppbar.value = false;
+    }
+    if (_scrollController.offset >=
+            _scrollController.position.maxScrollExtent &&
+        !_scrollController.position.outOfRange) {
+      showAppbar.value = true;
+    }
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _scrollController.removeListener(() {});
+    _scrollController.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,84 +73,20 @@ class _HistoryUIState extends State<HistoryUI> {
           ),
         ],
       ),
-      body: DefaultTabController(
-        length: 2,
-        child: Container(
-          padding: EdgeInsets.fromLTRB(15, 15, 15, 0),
-          decoration: BoxDecoration(
-            color: Color(0xfff6f6f6),
-            borderRadius: BorderRadius.circular(15),
+      body: kTabbar(
+        context,
+        tabs: [
+          Tab(
+            child: Text('Outgoing'),
           ),
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.wallet,
-                      color: kPrimaryColor,
-                    ),
-                    width10,
-                    Expanded(
-                      child: Text(
-                        '\$2099',
-                        style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                        ),
-                      ),
-                    ),
-                    Icon(
-                      Icons.arrow_forward_ios,
-                      color: Color(0xffbfbfbf),
-                      size: sdp(context, 11),
-                    ),
-                  ],
-                ),
-              ),
-              height20,
-              Container(
-                padding: EdgeInsets.all(2),
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: TabBar(
-                  indicatorColor: Colors.white,
-                  dividerColor: Colors.white.withOpacity(0),
-                  indicatorSize: TabBarIndicatorSize.tab,
-                  unselectedLabelColor: Colors.black,
-                  labelColor: Colors.white,
-                  indicator: BoxDecoration(
-                    color: kPrimaryColor,
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  tabs: [
-                    Tab(
-                      child: Text('Outgoing'),
-                    ),
-                    Tab(
-                      child: Text('Incoming'),
-                    ),
-                  ],
-                ),
-              ),
-              height15,
-              Expanded(
-                child: TabBarView(
-                  children: [
-                    _outgoingTab(),
-                    _incomingTab(),
-                  ],
-                ),
-              ),
-            ],
+          Tab(
+            child: Text('Incoming'),
           ),
-        ),
+        ],
+        views: [
+          _outgoingTab(),
+          _incomingTab(),
+        ],
       ),
     );
   }
@@ -127,6 +95,8 @@ class _HistoryUIState extends State<HistoryUI> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 5,
+      padding: EdgeInsets.only(bottom: sdp(context, 50)),
+      controller: _scrollController,
       itemBuilder: (context, index) {
         return _cargoCard();
       },
@@ -137,6 +107,8 @@ class _HistoryUIState extends State<HistoryUI> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 5,
+      padding: EdgeInsets.only(bottom: sdp(context, 50)),
+      controller: _scrollController,
       itemBuilder: (context, index) {
         return _cargoCard();
       },

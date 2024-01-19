@@ -8,6 +8,8 @@ ColorFilter kSvgColor(Color color) => ColorFilter.mode(
 const Color kScaffoldColor = Color(0XFFf5f5ff);
 const Color kPrimaryColor = Color(0xFF3E9A41);
 const Color kCardColor = Color(0xfff6f6f6);
+const Color kInactiveColor = Color(0xffb8b8b8);
+const Color kCompleteColor = Color(0xff5a74b6);
 
 ThemeData kThemeData() => ThemeData(
       scaffoldBackgroundColor: Colors.white,
