@@ -274,7 +274,7 @@ class _HomeUIState extends State<HomeUI> {
       child: GestureDetector(
         onTap: onTap,
         child: SizedBox(
-          height: sdp(context, 90),
+          // height: sdp(context, 90),
           width: sdp(context, 90),
           child: Card(
             color: Colors.grey.shade100,
