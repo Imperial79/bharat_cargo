@@ -66,12 +66,12 @@ class _HomeUIState extends State<HomeUI> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _quickBtns(),
             height10,
+            _quickBtns(),
+            height20,
             _carousel(),
             height10,
             _carouselIndicator(),
-            height20,
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 12.0),
               child: Column(
@@ -81,8 +81,8 @@ class _HomeUIState extends State<HomeUI> {
                   Text(
                     'Recents',
                     style: TextStyle(
-                      fontWeight: FontWeight.w400,
-                      letterSpacing: 1,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 2,
                     ),
                   ),
                   height20,
@@ -146,6 +146,7 @@ class _HomeUIState extends State<HomeUI> {
         autoPlay: true,
         aspectRatio: 16 / 7,
         enlargeCenterPage: true,
+        enlargeFactor: .2,
         viewportFraction: 0.8,
         onPageChanged: (index, reason) {
           setState(() => _selectedCarouselImage = index);
@@ -161,6 +162,7 @@ class _HomeUIState extends State<HomeUI> {
       decoration: BoxDecoration(
         borderRadius: kRadius(10),
         color: Colors.grey.shade100,
+        border: Border.all(color: Colors.grey.shade300),
       ),
       child: Column(
         children: [

@@ -1,3 +1,4 @@
+import 'package:bharat_cargo/constants/globals.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -254,25 +255,38 @@ Widget kTabbar(
       ),
       child: Column(
         children: [
-          Container(
-            padding: EdgeInsets.all(2),
-            decoration: BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: TabBar(
-              indicatorColor: Colors.white,
-              dividerColor: Colors.white.withOpacity(0),
-              indicatorSize: TabBarIndicatorSize.tab,
-              unselectedLabelColor: Colors.black,
-              labelColor: Colors.white,
-              indicator: BoxDecoration(
-                color: kPrimaryColor,
-                borderRadius: BorderRadius.circular(10),
-              ),
-              tabs: tabs,
-            ),
-          ),
+          ValueListenableBuilder(
+              valueListenable: showAppbar,
+              builder: (context, isShow, child) {
+                return AnimatedSize(
+                  duration: Duration(milliseconds: 200),
+                  reverseDuration: Duration(milliseconds: 200),
+                  curve: Curves.ease,
+                  child: isShow
+                      ? Container(
+                          padding: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              border: Border.all(color: Colors.grey.shade300)),
+                          child: TabBar(
+                            indicatorColor: Colors.white,
+                            dividerColor: Colors.white.withOpacity(0),
+                            indicatorSize: TabBarIndicatorSize.tab,
+                            unselectedLabelColor: Colors.black,
+                            labelColor: Colors.white,
+                            indicator: BoxDecoration(
+                              color: kPrimaryColor,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            tabs: tabs,
+                          ),
+                        )
+                      : Container(
+                          width: double.infinity,
+                        ),
+                );
+              }),
           height10,
           Expanded(
             child: TabBarView(children: views),

@@ -2,6 +2,8 @@ import 'package:bharat_cargo/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+const String kSvgPath = "assets/icons/";
+
 Widget kSvgImage(
   String imgLabel, {
   double? height,

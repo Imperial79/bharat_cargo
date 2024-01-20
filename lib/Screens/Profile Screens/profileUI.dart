@@ -1,6 +1,8 @@
 import 'package:bharat_cargo/utils/components.dart';
+import 'package:bharat_cargo/utils/constants.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ProfileUI extends StatefulWidget {
   const ProfileUI({super.key});
@@ -14,47 +16,77 @@ class _ProfileUIState extends State<ProfileUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
+        top: false,
         child: SingleChildScrollView(
-          padding: EdgeInsets.all(20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Row(
+              _userDataCard(context),
+              Container(
+                padding: EdgeInsets.all(15),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Manage Profile",
+                      style: TextStyle(
+                        letterSpacing: 2,
+                        fontWeight: FontWeight.w500,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Container _userDataCard(BuildContext context) {
+    return Container(
+      color: Colors.grey.shade100,
+      padding: EdgeInsets.all(15),
+      child: SafeArea(
+        child: Row(
+          children: [
+            CircleAvatar(
+              radius: 25,
+              backgroundImage:
+                  NetworkImage('https://source.unsplash.com/random'),
+            ),
+            width15,
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  CircleAvatar(
-                    radius: 30,
+                  Text(
+                    'User Name',
+                    style: TextStyle(
+                      fontSize: sdp(context, 12),
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
-                  width10,
-                  Expanded(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          'Avishek Verma',
-                          style: TextStyle(
-                            fontSize: sdp(context, 12),
-                            fontWeight: FontWeight.w600,
-                          ),
-                        ),
-                        Text(
-                          'avishekverma79@gmail.com',
-                          style: TextStyle(
-                            fontSize: sdp(context, 10),
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ],
+                  Text(
+                    'example@mail.com',
+                    style: TextStyle(
+                      fontSize: sdp(context, 10),
+                      fontWeight: FontWeight.w400,
                     ),
                   ),
                 ],
               ),
-              height15,
-              kTextButton(
-                onPressed: () {},
-                label: 'Edit Profile',
+            ),
+            width10,
+            IconButton(
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                kSvgPath + "edit.svg",
+                height: sdp(context, 15),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

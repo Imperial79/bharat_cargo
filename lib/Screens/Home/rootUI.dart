@@ -59,38 +59,47 @@ class _RootUIState extends State<RootUI> {
 
   Widget _bottomBar() {
     return SafeArea(
-      child: Container(
-        height: sdp(context, 50),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(10),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Divider(
+            height: 0,
+            color: Colors.grey.shade300,
           ),
-        ),
-        child: Row(
-          children: [
-            _navIcons(
-              index: 0,
-              iconPath: 'assets/icons/home.svg',
-              label: 'Home',
+          Container(
+            height: sdp(context, 50),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.vertical(
+                top: Radius.circular(10),
+              ),
             ),
-            _navIcons(
-              index: 1,
-              iconPath: 'assets/icons/new.svg',
-              label: 'New Cargo',
+            child: Row(
+              children: [
+                _navIcons(
+                  index: 0,
+                  iconPath: 'assets/icons/home.svg',
+                  label: 'Home',
+                ),
+                _navIcons(
+                  index: 1,
+                  iconPath: 'assets/icons/new.svg',
+                  label: 'New Cargo',
+                ),
+                _navIcons(
+                  index: 2,
+                  iconPath: 'assets/icons/history.svg',
+                  label: 'Recents',
+                ),
+                _navIcons(
+                  index: 3,
+                  iconPath: 'assets/icons/profile.svg',
+                  label: 'Profile',
+                ),
+              ],
             ),
-            _navIcons(
-              index: 2,
-              iconPath: 'assets/icons/history.svg',
-              label: 'Recents',
-            ),
-            _navIcons(
-              index: 3,
-              iconPath: 'assets/icons/profile.svg',
-              label: 'Profile',
-            ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
