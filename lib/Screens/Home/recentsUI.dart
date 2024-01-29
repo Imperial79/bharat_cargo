@@ -1,4 +1,5 @@
 import 'package:bharat_cargo/constants/globals.dart';
+import 'package:bharat_cargo/services/apiConfig.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
@@ -6,14 +7,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import '../../utils/constants.dart';
 
-class HistoryUI extends StatefulWidget {
-  const HistoryUI({super.key});
+class RecentsUI extends StatefulWidget {
+  const RecentsUI({super.key});
 
   @override
-  State<HistoryUI> createState() => _HistoryUIState();
+  State<RecentsUI> createState() => _RecentsUIState();
 }
 
-class _HistoryUIState extends State<HistoryUI> {
+class _RecentsUIState extends State<RecentsUI> {
   final _scrollController = new ScrollController();
 
   @override
@@ -59,14 +60,14 @@ class _HistoryUIState extends State<HistoryUI> {
         actions: [
           IconButton(
             onPressed: () {},
-            icon: kSvgImage(
+            icon: kSvgIcon(
               'search',
               color: Color(0xffbcbcbc),
             ),
           ),
           IconButton(
             onPressed: () {},
-            icon: kSvgImage(
+            icon: kSvgIcon(
               'filter',
               color: Color(0xffbcbcbc),
             ),
@@ -166,7 +167,7 @@ class _HistoryUIState extends State<HistoryUI> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              kSvgImage(
+              kSvgIcon(
                 'from_location',
                 color: Colors.grey,
               ),
@@ -199,7 +200,7 @@ class _HistoryUIState extends State<HistoryUI> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              kSvgImage(
+              kSvgIcon(
                 'to_location',
                 color: kPrimaryColor,
               ),

@@ -43,14 +43,14 @@ systemColors() {
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.white,
+      systemNavigationBarColor: Colors.transparent,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
 }
 
 class SubmitButton {
-  static Widget text(
+  static Widget regular(
     BuildContext context, {
     required void Function()? onPressed,
     String? label,
@@ -65,6 +65,7 @@ class SubmitButton {
       highlightElevation: 0,
       color: buttonColor ?? kPrimaryColor,
       elevation: 0,
+      disabledColor: Colors.grey,
       padding: padding ?? EdgeInsets.symmetric(vertical: 15, horizontal: 25),
       child: SizedBox(
         width: double.infinity,
@@ -76,6 +77,33 @@ class SubmitButton {
           ),
           textAlign: TextAlign.center,
         ),
+      ),
+    );
+  }
+
+  static Widget text(
+    BuildContext context, {
+    required void Function()? onPressed,
+    String? label,
+    EdgeInsetsGeometry? padding,
+  }) {
+    return MaterialButton(
+      onPressed: onPressed,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(8),
+      ),
+      highlightElevation: 0,
+      color: Colors.transparent,
+      elevation: 0,
+      disabledColor: Colors.grey,
+      child: Text(
+        label ?? 'Proceed',
+        style: TextStyle(
+          color: kPrimaryColor,
+          fontSize: sdp(context, 12),
+          fontWeight: FontWeight.w600,
+        ),
+        textAlign: TextAlign.center,
       ),
     );
   }
@@ -135,7 +163,7 @@ TextField kTextField(
     keyboardType: keyboardType,
     style: TextStyle(
       fontWeight: FontWeight.w500,
-      fontSize: sdp(context, 10),
+      fontSize: sdp(context, 12),
       fontFamily: 'Poppins',
     ),
     maxLength: maxLength,
@@ -146,7 +174,7 @@ TextField kTextField(
       counterText: '',
       prefixText: prefixText,
       prefixStyle: TextStyle(
-        fontSize: sdp(context, 10),
+        fontSize: sdp(context, 12),
         fontWeight: FontWeight.w500,
         fontFamily: 'Poppins',
       ),
@@ -155,11 +183,11 @@ TextField kTextField(
         fontFamily: 'Poppins',
         fontWeight: FontWeight.w400,
         color: Colors.grey.shade700,
-        fontSize: sdp(context, 10),
+        fontSize: sdp(context, 12),
       ),
       floatingLabelStyle: TextStyle(
         fontFamily: 'Poppins',
-        fontSize: sdp(context, 10),
+        fontSize: sdp(context, 12),
         fontWeight: FontWeight.w500,
         color: Colors.grey.shade700,
       ),

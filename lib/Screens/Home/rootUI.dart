@@ -8,7 +8,7 @@ import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import '../../utils/sdp.dart';
-import 'historyUI.dart';
+import 'recentsUI.dart';
 
 ValueNotifier activeTab = new ValueNotifier(0);
 
@@ -23,7 +23,7 @@ class _RootUIState extends State<RootUI> {
   List<Widget> _screens = [
     HomeUI(),
     NewCargoUI(),
-    HistoryUI(),
+    RecentsUI(),
     ProfileUI(),
   ];
   @override

@@ -49,7 +49,7 @@ class _NewCargoUIState extends State<NewCargoUI> {
             height20,
             Row(
               children: [
-                kSvgImage(
+                kSvgIcon(
                   'from_location',
                   color: Colors.black,
                   height: sdp(context, 11),
@@ -77,7 +77,7 @@ class _NewCargoUIState extends State<NewCargoUI> {
                   children: [
                     // Row(
                     //   children: [
-                    //     kSvgImage(
+                    //     kSvgIcon(
                     //       'from_location',
                     //       color: Colors.grey,
                     //       height: sdp(context, 11),

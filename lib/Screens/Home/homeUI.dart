@@ -1,4 +1,5 @@
 import 'package:bharat_cargo/Screens/Home/rootUI.dart';
+import 'package:bharat_cargo/services/apiConfig.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:bharat_cargo/utils/constants.dart';
@@ -25,6 +26,11 @@ class _HomeUIState extends State<HomeUI> {
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
+    api();
+  }
+
+  void api() async {
+    await apiCallBack('/users/register.php');
   }
 
   _scrollListener() {
@@ -53,6 +59,7 @@ class _HomeUIState extends State<HomeUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: Text(
           'Bharat Cargo',
           style: TextStyle(
@@ -199,7 +206,7 @@ class _HomeUIState extends State<HomeUI> {
           height10,
           Row(
             children: [
-              kSvgImage(
+              kSvgIcon(
                 'from_location',
                 height: sdp(context, 12),
                 color: Colors.grey,
@@ -219,7 +226,7 @@ class _HomeUIState extends State<HomeUI> {
           height5,
           Row(
             children: [
-              kSvgImage(
+              kSvgIcon(
                 'to_location',
                 height: sdp(context, 12),
                 color: kPrimaryColor,

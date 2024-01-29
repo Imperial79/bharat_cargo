@@ -67,7 +67,7 @@ class _RegisterUIState extends State<RegisterUI> {
                     keyboardType: TextInputType.phone,
                   ),
                   height20,
-                  SubmitButton.text(
+                  SubmitButton.regular(
                     context,
                     onPressed: () {
                       navPush(context, RootUI());

@@ -1,5 +1,5 @@
+import 'package:bharat_cargo/Screens/Auth%20Screens/otpUI.dart';
 import 'package:bharat_cargo/Screens/Auth%20Screens/registerUI.dart';
-import 'package:bharat_cargo/Screens/Home/rootUI.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:bharat_cargo/utils/sdp.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +14,7 @@ class LoginUI extends StatefulWidget {
 }
 
 class _LoginUIState extends State<LoginUI> {
+  final phone = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,23 +57,20 @@ class _LoginUIState extends State<LoginUI> {
                     maxLength: 10,
                     textCapitalization: TextCapitalization.words,
                     keyboardType: TextInputType.phone,
-                  ),
-                  height10,
-                  kTextField(
-                    context,
-                    labelText: 'Password',
-                    obscureText: true,
-                    maxLength: 6,
-                    textCapitalization: TextCapitalization.words,
-                    keyboardType: TextInputType.phone,
+                    controller: phone,
+                    onChanged: (val) {
+                      setState(() {});
+                    },
                   ),
                   height20,
-                  SubmitButton.text(
+                  SubmitButton.regular(
                     context,
-                    onPressed: () {
-                      navPush(context, RootUI());
-                    },
-                    label: 'Proceed',
+                    onPressed: phone.text.length == 10
+                        ? () {
+                            navPush(context, OtpUI(phone: phone.text));
+                          }
+                        : null,
+                    label: 'Send OTP',
                   ),
                   height50,
                   Center(
@@ -92,7 +90,7 @@ class _LoginUIState extends State<LoginUI> {
                           child: Text(
                             'Register',
                             style: TextStyle(
-                              fontWeight: FontWeight.w700,
+                              fontWeight: FontWeight.w500,
                               color: kPrimaryColor,
                             ),
                           ),

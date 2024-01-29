@@ -4,7 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 const String kSvgPath = "assets/icons/";
 
-Widget kSvgImage(
+Widget kSvgIcon(
   String imgLabel, {
   double? height,
   Color color = Colors.black,
@@ -13,6 +13,15 @@ Widget kSvgImage(
       'assets/icons/$imgLabel.svg',
       height: height,
       colorFilter: kSvgColor(color),
+    );
+
+Widget kSvgImage(
+  String imgLabel, {
+  double? height,
+}) =>
+    SvgPicture.asset(
+      'assets/images/$imgLabel.svg',
+      height: height,
     );
 
 Widget kAssetImage(

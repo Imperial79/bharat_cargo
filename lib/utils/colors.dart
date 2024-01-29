@@ -12,9 +12,15 @@ const Color kInactiveColor = Color(0xffb8b8b8);
 const Color kCompleteColor = Color(0xff5a74b6);
 
 ThemeData kThemeData() => ThemeData(
+      visualDensity: VisualDensity.adaptivePlatformDensity,
       scaffoldBackgroundColor: Colors.white,
       colorScheme: ColorScheme.fromSeed(seedColor: kPrimaryColor),
       useMaterial3: true,
       fontFamily: 'Poppins',
       cardTheme: CardTheme(elevation: 0),
+      textButtonTheme: TextButtonThemeData(
+        style: TextButton.styleFrom(
+          foregroundColor: kPrimaryColor,
+        ),
+      ),
     );

@@ -1,3 +1,4 @@
+import 'package:bharat_cargo/Screens/Auth%20Screens/welcomeUI.dart';
 import 'package:bharat_cargo/Screens/Home/rootUI.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       themeAnimationCurve: Curves.ease,
       themeMode: ThemeMode.system,
       theme: kThemeData(),
-      home: const RootUI(),
+      home: const WelcomeUI(),
     );
   }
 }
