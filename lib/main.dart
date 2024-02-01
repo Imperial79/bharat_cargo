@@ -1,7 +1,12 @@
+import 'dart:async';
+
+import 'package:bharat_cargo/Screens/Auth%20Screens/loginUI.dart';
+import 'package:bharat_cargo/Screens/Auth%20Screens/splashUI.dart';
 import 'package:bharat_cargo/Screens/Auth%20Screens/welcomeUI.dart';
-import 'package:bharat_cargo/Screens/Home/rootUI.dart';
+import 'package:bharat_cargo/Screens/Profile%20Screens/profileUI.dart';
 import 'package:bharat_cargo/utils/components.dart';
 import 'package:flutter/material.dart';
+
 import 'utils/colors.dart';
 
 void main() {
@@ -14,13 +19,14 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     systemColors();
+
     return MaterialApp(
       title: 'Bharat Cargo',
       debugShowCheckedModeBanner: false,
       themeAnimationCurve: Curves.ease,
       themeMode: ThemeMode.system,
       theme: kThemeData(),
-      home: const WelcomeUI(),
+      home: SplashUI(),
     );
   }
 }

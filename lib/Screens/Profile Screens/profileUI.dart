@@ -34,6 +34,7 @@ class _ProfileUIState extends State<ProfileUI> {
                         fontWeight: FontWeight.w500,
                       ),
                     ),
+                    height20,
                   ],
                 ),
               ),

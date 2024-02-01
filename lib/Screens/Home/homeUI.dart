@@ -26,11 +26,6 @@ class _HomeUIState extends State<HomeUI> {
   void initState() {
     super.initState();
     _scrollController.addListener(_scrollListener);
-    api();
-  }
-
-  void api() async {
-    await apiCallBack('/users/register.php');
   }
 
   _scrollListener() {
