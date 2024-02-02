@@ -1,8 +1,8 @@
-import 'package:bharat_cargo/Screens/Auth%20Screens/loginUI.dart';
-import 'package:bharat_cargo/Screens/Home/rootUI.dart';
-import 'package:bharat_cargo/main.dart';
+import 'package:bharat_cargo/Screens/examplePage.dart';
 import 'package:bharat_cargo/utils/components.dart';
+import 'package:bharat_cargo/utils/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class SplashUI extends StatefulWidget {
   const SplashUI({super.key});
@@ -20,9 +20,9 @@ class _SplashUIState extends State<SplashUI> {
 
   func() async {
     await Future.delayed(
-      Duration(seconds: 2),
+      Duration(seconds: 0),
       () {
-        navPushReplacement(context, RootUI());
+        if (isRedirect.value) Navigate.pushReplacement(context, 'root');
       },
     );
   }
@@ -31,12 +31,15 @@ class _SplashUIState extends State<SplashUI> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            Text('Splash Screen'),
-            LinearProgressIndicator(),
-          ],
+        child: Padding(
+          padding: EdgeInsets.all(20.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              kSvgImage('splash'),
+              CircularProgressIndicator.adaptive(),
+            ],
+          ),
         ),
       ),
     );

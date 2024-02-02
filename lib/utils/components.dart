@@ -2,6 +2,7 @@ import 'package:bharat_cargo/constants/globals.dart';
 import 'package:bharat_cargo/utils/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:go_router/go_router.dart';
 import 'sdp.dart';
 
 SizedBox get height5 => const SizedBox(height: 5);
@@ -19,7 +20,39 @@ SizedBox kHeight(double height) => SizedBox(
       height: height,
     );
 
-Future<void> navPush(BuildContext context, Widget screen) {
+class Navigate {
+  static void push(
+    BuildContext context,
+    String screen, {
+    Map<String, String> pathParameters = const {},
+  }) {
+    context.pushNamed(screen, pathParameters: pathParameters);
+  }
+
+  static void pushReplacement(
+    BuildContext context,
+    String screen, {
+    Map<String, String> pathParameters = const {},
+  }) {
+    context.pushReplacementNamed(screen, pathParameters: pathParameters);
+  }
+
+  static void clearAndPush(
+    BuildContext context,
+    String screen, {
+    Map<String, String> pathParameters = const {},
+  }) {
+    while (context.canPop()) {
+      context.pop();
+    }
+    context.pushReplacementNamed(screen, pathParameters: pathParameters);
+  }
+}
+
+navPush(
+  BuildContext context,
+  Widget screen,
+) {
   return Navigator.push(
       context, MaterialPageRoute(builder: (context) => screen));
 }
@@ -43,7 +76,7 @@ systemColors() {
       statusBarBrightness: Brightness.light,
       statusBarIconBrightness: Brightness.dark,
       statusBarColor: Colors.transparent,
-      systemNavigationBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.white,
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
@@ -276,7 +309,6 @@ Widget kTabbar(
   return DefaultTabController(
     length: 2,
     child: Container(
-      padding: EdgeInsets.fromLTRB(10, 10, 10, 0),
       decoration: BoxDecoration(
         color: Color(0xfff6f6f6),
         borderRadius: BorderRadius.circular(15),
@@ -292,6 +324,7 @@ Widget kTabbar(
                   curve: Curves.ease,
                   child: isShow
                       ? Container(
+                          margin: EdgeInsets.fromLTRB(10, 10, 10, 0),
                           padding: EdgeInsets.all(5),
                           decoration: BoxDecoration(
                               color: Colors.white,

@@ -24,13 +24,13 @@ class CustomSliverAppBar extends StatelessWidget {
       floating: false,
       expandedHeight: 130.0,
       automaticallyImplyLeading: !isMainView,
-      flexibleSpace: FlexibleSpaceBar(
-        titlePadding: EdgeInsets.only(
-          bottom: bottom != null ? 16.0 : 14.0,
-          left: isMainView ? 20.0 : 55.0,
-        ),
-        title: title,
-      ),
+      // flexibleSpace: FlexibleSpaceBar(
+      //   titlePadding: EdgeInsets.only(
+      //     bottom: bottom != null ? 16.0 : 14.0,
+      //     left: isMainView ? 20.0 : 55.0,
+      //   ),
+      //   title: title,
+      // ),
       leading: isMainView
           ? null
           : IconButton(

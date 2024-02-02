@@ -20,6 +20,22 @@ class _LoginUIState extends State<LoginUI> {
     return Scaffold(
       body: Stack(
         children: [
+          Positioned(
+            bottom: -90,
+            left: -90,
+            child: CircleAvatar(
+              radius: 120,
+              backgroundColor: kPrimaryColor.withOpacity(0.2),
+            ),
+          ),
+          Positioned(
+            top: -60,
+            right: -60,
+            child: CircleAvatar(
+              radius: 100,
+              backgroundColor: Colors.grey.shade100,
+            ),
+          ),
           SafeArea(
             child: Padding(
               padding: EdgeInsets.all(19.0),
@@ -67,55 +83,15 @@ class _LoginUIState extends State<LoginUI> {
                     context,
                     onPressed: phone.text.length == 10
                         ? () {
-                            navPush(context, OtpUI(phone: phone.text));
+                            Navigate.push(context, 'otp', pathParameters: {
+                              'phone': phone.text,
+                            });
                           }
                         : null,
                     label: 'Send OTP',
                   ),
-                  height50,
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        Text(
-                          'Not on Bharat Cargo?',
-                          style: TextStyle(fontWeight: FontWeight.w500),
-                        ),
-                        width10,
-                        InkWell(
-                          onTap: () {
-                            navPushReplacement(context, RegisterUI());
-                          },
-                          child: Text(
-                            'Register',
-                            style: TextStyle(
-                              fontWeight: FontWeight.w500,
-                              color: kPrimaryColor,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
                 ],
               ),
-            ),
-          ),
-          Positioned(
-            bottom: -90,
-            left: -90,
-            child: CircleAvatar(
-              radius: 120,
-              backgroundColor: kPrimaryColor.withOpacity(0.2),
-            ),
-          ),
-          Positioned(
-            top: -60,
-            right: -60,
-            child: CircleAvatar(
-              radius: 100,
-              backgroundColor: Colors.grey.shade100,
             ),
           ),
         ],

@@ -96,7 +96,7 @@ class _RecentsUIState extends State<RecentsUI> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 5,
-      padding: EdgeInsets.only(bottom: sdp(context, 50)),
+      padding: EdgeInsets.only(bottom: sdp(context, 100)),
       controller: _scrollController,
       itemBuilder: (context, index) {
         return _cargoCard();
@@ -108,7 +108,7 @@ class _RecentsUIState extends State<RecentsUI> {
     return ListView.builder(
       shrinkWrap: true,
       itemCount: 5,
-      padding: EdgeInsets.only(bottom: sdp(context, 50)),
+      padding: EdgeInsets.only(bottom: sdp(context, 100)),
       controller: _scrollController,
       itemBuilder: (context, index) {
         return _cargoCard();
